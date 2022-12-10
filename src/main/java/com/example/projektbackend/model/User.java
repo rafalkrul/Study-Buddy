@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.*;
 import java.util.Date;
 import java.util.Set;
 import java.util.UUID;
@@ -32,11 +33,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -45,11 +41,11 @@ public class User {
     @Column(nullable = false, columnDefinition = "boolean default false")
     private Boolean isAdmin = false;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "track",
-            joinColumns = { @JoinColumn(name = "recording_id") },
-            inverseJoinColumns = { @JoinColumn(name = "release_id") }
+    @OneToMany(mappedBy = "user")
+    private List<FlashcardSet> flashcardSets;
+
+    @OneToMany(mappedBy = "user")
+    private List<Quiz> quizzes;
 
 
 }
