@@ -1,14 +1,11 @@
 package com.example.projektbackend.service.question;
 
-import com.example.projektbackend.DTO.QuestionDTO;
+import com.example.projektbackend.DTO.question.QuestionDTO;
 import com.example.projektbackend.model.Question;
 import com.example.projektbackend.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 import java.util.UUID;

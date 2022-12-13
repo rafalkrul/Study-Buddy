@@ -1,6 +1,6 @@
 package com.example.projektbackend.controller;
 
-import com.example.projektbackend.DTO.QuestionDTO;
+import com.example.projektbackend.DTO.question.QuestionDTO;
 import com.example.projektbackend.service.question.QuestionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

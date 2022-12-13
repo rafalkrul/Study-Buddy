@@ -1,15 +1,15 @@
 package com.example.projektbackend.service.user;
 
-import com.example.projektbackend.DTO.UserDTO;
+import com.example.projektbackend.DTO.user.UserDTO;
 import com.example.projektbackend.model.User;
 import com.example.projektbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +29,20 @@ public class UserService {
         return id;
     }
 
-    public void deleteUserById(UUID user_id){
+    public UserDTO GetUserById(UUID user_id){
+
+        var user = userRepository.findById(user_id);
+
+        return mapper.map(user, UserDTO.class);
+    }
+
+    public List<UserDTO> GetAllUsers(){
+        return userRepository.findAll().stream()
+                .map(user -> mapper.map(user,UserDTO.class))
+                .collect(Collectors.toList());
+    }
+
+    public void DeleteUserById(UUID user_id){
         userRepository.deleteById(user_id);
     }
 }

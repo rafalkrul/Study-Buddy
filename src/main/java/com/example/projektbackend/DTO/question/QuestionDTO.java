@@ -1,4 +1,4 @@
-package com.example.projektbackend.DTO;
+package com.example.projektbackend.DTO.question;
 
 import lombok.Data;
 @Data

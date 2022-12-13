@@ -1,4 +1,4 @@
-package com.example.projektbackend.DTO;
+package com.example.projektbackend.DTO.user;
 
 
 import jakarta.validation.constraints.Email;

@@ -1,15 +1,13 @@
 package com.example.projektbackend.controller;
 
-import com.example.projektbackend.DTO.UserDTO;
-import com.example.projektbackend.model.User;
-import com.example.projektbackend.repository.UserRepository;
+import com.example.projektbackend.DTO.user.UserDTO;
 import com.example.projektbackend.service.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -27,7 +25,19 @@ public class UserController {
 
     @DeleteMapping("/user/{user_id}")
     public ResponseEntity<Void> deleteUserbyId(@PathVariable UUID user_id){
-        userService.deleteUserById(user_id);
+        userService.DeleteUserById(user_id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/users")
+    public ResponseEntity<List<UserDTO>> getUsers(){
+        var users = userService.GetAllUsers();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/users/{user_id}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable UUID user_id){
+       var user = userService.GetUserById(user_id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

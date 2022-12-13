@@ -28,7 +28,7 @@ public class UserCreated {
     private User user;
 
     @OneToOne
-    private Flashcard flashcard;
+    private FlashcardSet flashcardSet;
 
     @OneToOne
     private Quiz quiz;
