@@ -1,9 +1,9 @@
 package com.example.projektbackend.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
 import java.util.*;
 import java.util.Date;
 import java.util.Set;
@@ -14,8 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "flashcard_set")
+@Entity(name = "flashcard_set")
 public class FlashcardSet {
 
     @Id
@@ -34,7 +33,7 @@ public class FlashcardSet {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "flashcardSet", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "flashcard_id", cascade = CascadeType.ALL)
     private List<Flashcard> flashcards;
 
 }

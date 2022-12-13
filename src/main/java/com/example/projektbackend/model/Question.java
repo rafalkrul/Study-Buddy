@@ -1,8 +1,11 @@
 package com.example.projektbackend.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.Set;
 import java.util.UUID;
 
@@ -11,8 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "questions")
+@Entity(name = "Question")
 public class Question {
 
     @Id

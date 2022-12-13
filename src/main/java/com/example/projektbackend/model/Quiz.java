@@ -1,12 +1,9 @@
 package com.example.projektbackend.model;
 
+import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
-import java.util.*;
-import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,8 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "quiz")
+@Entity(name = "quiz")
 public class Quiz {
 
     @Id
@@ -40,6 +36,6 @@ public class Quiz {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question_id", cascade = CascadeType.ALL)
     private List<Question> questions;
 }

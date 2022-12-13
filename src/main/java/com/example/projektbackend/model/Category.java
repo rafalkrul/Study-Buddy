@@ -1,8 +1,8 @@
 package com.example.projektbackend.model;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.util.UUID;
 
 @Getter
@@ -10,8 +10,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "category")
+@Entity(name = "category")
 public class Category {
 
     @Id

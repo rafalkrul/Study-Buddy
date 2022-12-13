@@ -1,9 +1,12 @@
 package com.example.projektbackend.model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 
 
-import javax.persistence.*;
 import java.util.UUID;
 
 
@@ -12,10 +15,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@Table(name = "user_created")
+@Entity(name = "user_created")
+
 public class UserCreated {
 
+
+    @Id
+    @GeneratedValue
+    private UUID user_created_id;
 
     @OneToOne
     private User user;
