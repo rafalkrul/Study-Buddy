@@ -1,8 +1,8 @@
-package com.example.projektbackend.model;
+package com.example.projektbackend.DTO;
 
 import lombok.Data;
 @Data
-public class QuestionPostDTO {
+public class QuestionDTO {
     private String question;
 
     private String answer1;
