@@ -3,6 +3,7 @@ package com.example.projektbackend.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +37,6 @@ public class Quiz {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "question_id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "question_id", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Question> questions;
 }
