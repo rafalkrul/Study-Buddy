@@ -1,7 +1,6 @@
 package com.example.projektbackend.DTO.quiz;
 
 import com.example.projektbackend.model.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.List;

@@ -2,11 +2,8 @@ package com.example.projektbackend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.*;
-import java.util.Date;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -21,17 +18,17 @@ public class FlashcardSet {
     @GeneratedValue
     private UUID flashcardset_id;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
-    private String description;
-
     @ManyToOne
     private Level level;
 
     @ManyToOne
     private User user;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String description;
 
     @OneToMany(mappedBy = "flashcard_id", cascade = CascadeType.ALL)
     private List<Flashcard> flashcards;
