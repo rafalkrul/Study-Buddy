@@ -17,12 +17,15 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserValidator userValidator;
     private final ModelMapper mapper;
 
     public UUID CreateUser(UserDTO userDTO) {
         var id = UUID.randomUUID();
         var userAdd = mapper.map(userDTO, User.class);
 
+        userValidator.ValidateUser(userDTO);
+        if(userValidator.ValidateEmail(userDTO.getEmail()))
         userAdd.setUser_id(id);
         userRepository.save(userAdd);
 
@@ -40,6 +43,11 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(user -> mapper.map(user,UserDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    public UserDTO GetUserByUsername(String username){
+        var user = userRepository.findByUsername(username);
+        return mapper.map(user, UserDTO.class);
     }
 
     public void DeleteUserById(UUID user_id){

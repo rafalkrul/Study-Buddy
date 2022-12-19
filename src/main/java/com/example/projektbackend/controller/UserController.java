@@ -40,4 +40,11 @@ public class UserController {
        var user = userService.GetUserById(user_id);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+    @GetMapping("/usersByUsername/{userUsername}")
+    public ResponseEntity<UserDTO> getUserByUsername(@PathVariable String userUsername){
+        var user = userService.GetUserByUsername(userUsername);
+        return new ResponseEntity<>(user,HttpStatus.OK);
+    }
+
 }
