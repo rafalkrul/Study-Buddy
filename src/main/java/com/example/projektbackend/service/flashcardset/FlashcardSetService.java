@@ -5,6 +5,7 @@ import com.example.projektbackend.model.Flashcard;
 import com.example.projektbackend.model.FlashcardSet;
 import com.example.projektbackend.repository.FlashcardRepository;
 import com.example.projektbackend.repository.FlashcardSetRepository;
+import com.example.projektbackend.service.flashcard.FlashcardValidator;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class FlashcardSetService {
     private final FlashcardSetRepository flashcardSetRepository;
 
     private final FlashcardRepository flashcardRepository;
+
+    private final FlashcardValidator flashcardValidator;
     private final ModelMapper mapper;
 
 
@@ -34,6 +37,10 @@ public class FlashcardSetService {
                 .stream()
                 .map(FlashcardDTO -> mapper.map(FlashcardDTO, Flashcard.class))
                 .collect(Collectors.toList());
+
+       // flashcardValidator.ValidateFlashcard(flashcardsAdd);
+
+        flashcardValidator.ValidateFlashcardSet(flashcardsAdd);
 
        flashcardSet.setFlashcards(flashcardsAdd);
 

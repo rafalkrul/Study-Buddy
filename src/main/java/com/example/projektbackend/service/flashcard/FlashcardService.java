@@ -15,6 +15,8 @@ public class FlashcardService {
 
     private final FlashcardRepository flashcardRepository;
 
+    private final FlashcardValidator flashcardValidator;
+
     private final ModelMapper mapper;
 
 
@@ -23,6 +25,8 @@ public class FlashcardService {
         UUID id = UUID.randomUUID();
 
         var flashcardAdd = mapper.map(flashcardDTO, Flashcard.class);
+
+        flashcardValidator.ValidateFlashcard(flashcardDTO);
 
         flashcardRepository.save(flashcardAdd);
 
