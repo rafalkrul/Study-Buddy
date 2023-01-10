@@ -21,10 +21,6 @@ public class Question {
     @GeneratedValue
     private UUID question_id;
 
-
-//    @ManyToOne
-//    @JoinColumn(name = "quiz_id")
-//    private Quiz quiz;
     @Column(nullable = false)
     private String question;
     @Column(nullable = false)

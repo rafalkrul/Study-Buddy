@@ -1,9 +1,7 @@
 package com.example.projektbackend.service.category;
 
 import com.example.projektbackend.DTO.category.CategoryDTO;
-import com.example.projektbackend.DTO.level.LevelDTO;
 import com.example.projektbackend.model.Category;
-import com.example.projektbackend.model.Level;
 import com.example.projektbackend.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,7 +22,7 @@ public class CategoryService {
         var id = UUID.randomUUID();
         var categoryAdd = mapper.map(category, Category.class);
 
-        categoryAdd.setCategory_id(id);
+        categoryAdd.setId(id);
         categoryRepository.save(categoryAdd);
 
         return id;

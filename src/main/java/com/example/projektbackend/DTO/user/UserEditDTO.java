@@ -1,17 +1,18 @@
 package com.example.projektbackend.DTO.user;
 
-
 import jakarta.validation.constraints.Email;
 import lombok.Data;
 
-@Data
-public class UserDTO {
+import java.util.UUID;
 
-    private String username;
+@Data
+public class UserEditDTO {
+
+    private UUID user_id;
+
     private String password;
     @Email
     private String email;
 
-    private boolean isAdmin;
 
 }

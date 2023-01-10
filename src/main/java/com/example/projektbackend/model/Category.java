@@ -15,7 +15,7 @@ public class Category {
 
     @Id
     @GeneratedValue
-    private UUID category_id;
+    private UUID id;
 
     @ManyToOne
     private Level level;

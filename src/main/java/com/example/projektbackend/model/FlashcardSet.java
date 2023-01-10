@@ -30,7 +30,7 @@ public class FlashcardSet {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "flashcard_id", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Flashcard> flashcards;
 
 }

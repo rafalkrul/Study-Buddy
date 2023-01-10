@@ -21,7 +21,7 @@ public class LevelService {
         var id = UUID.randomUUID();
         var levelAdd = mapper.map(level, Level.class);
 
-        levelAdd.setLevel_id(id);
+        levelAdd.setId(id);
         levelRepository.save(levelAdd);
 
         return id;

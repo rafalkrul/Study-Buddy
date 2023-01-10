@@ -1,6 +1,7 @@
 package com.example.projektbackend.service.user;
 
 import com.example.projektbackend.DTO.user.UserDTO;
+import com.example.projektbackend.DTO.user.UserEditDTO;
 import com.example.projektbackend.execptions.InvalidRegisterData;
 import com.example.projektbackend.model.User;
 import com.example.projektbackend.repository.UserRepository;
@@ -39,7 +40,23 @@ public class UserService {
         return id;
     }
 
-    public void ChangePassword(UserDTO userDTO){
+    public void EditUserData(UserEditDTO userEditDTO){
+
+        var user = AuthenticatedUser(userEditDTO);
+
+        if(!userEditDTO.getEmail().isBlank()){
+            userValidator.ValidateEditUserEmail(userEditDTO);
+            userValidator.ValidateEmail(userEditDTO.getEmail());
+           user.setEmail(userEditDTO.getEmail());
+       }
+
+        if(!userEditDTO.getPassword().isBlank()){
+            userValidator.ValidateEditUserPassword(userEditDTO);
+            user.setPassword(userEditDTO.getPassword());
+        }
+
+
+        userRepository.save(user);
 
     }
 
@@ -63,5 +80,14 @@ public class UserService {
 
     public void DeleteUserById(UUID user_id){
         userRepository.deleteById(user_id);
+    }
+
+
+    public User AuthenticatedUser(UserEditDTO userEditDTO) {
+
+        var user = userRepository.findById(userEditDTO.getUser_id());
+
+        return mapper.map(user, User.class);
+
     }
 }

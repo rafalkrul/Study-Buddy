@@ -1,6 +1,7 @@
 package com.example.projektbackend.controller;
 
 import com.example.projektbackend.DTO.user.UserDTO;
+import com.example.projektbackend.DTO.user.UserEditDTO;
 import com.example.projektbackend.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -47,4 +48,9 @@ public class UserController {
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
+    @PostMapping("/user/edit")
+    public ResponseEntity<Void> EditUserData(@RequestBody UserEditDTO userEditDTO){
+        userService.EditUserData(userEditDTO);
+        return ResponseEntity.ok().build();
+    }
 }

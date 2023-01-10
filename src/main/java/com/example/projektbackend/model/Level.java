@@ -5,10 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
-import java.util.Date;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -21,7 +18,7 @@ public class Level {
 
     @Id
     @GeneratedValue
-    private UUID level_id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;

@@ -2,11 +2,8 @@ package com.example.projektbackend.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 
-import java.util.Date;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -19,7 +16,7 @@ import java.util.UUID;
 public class Unit {
     @Id
     @GeneratedValue
-    private UUID unit_id;
+    private UUID id;
 
     @Column(nullable = false)
     private String name;
@@ -29,5 +26,8 @@ public class Unit {
 
     @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private Level level;
 
 }

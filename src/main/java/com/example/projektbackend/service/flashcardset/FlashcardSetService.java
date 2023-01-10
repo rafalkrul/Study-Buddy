@@ -1,5 +1,7 @@
 package com.example.projektbackend.service.flashcardset;
 
+import com.example.projektbackend.DTO.flashcardset.FlashcardSetDTO;
+import com.example.projektbackend.DTO.flashcardset.FlashcardSetEditDTO;
 import com.example.projektbackend.DTO.flashcardset.FlashcardSetPostDTO;
 import com.example.projektbackend.model.Flashcard;
 import com.example.projektbackend.model.FlashcardSet;
@@ -10,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -51,6 +54,22 @@ public class FlashcardSetService {
         return id;
     }
 
+
+
+
+
+    public void AddFlashcardsInFlashcardSet(UUID uuid, List<Flashcard> flashcards){
+
+        var flashcardSet = flashcardSetRepository.findById(uuid);
+
+        var flashcardlist = flashcardSet.stream().map(FlashcardSet::getFlashcards).collect(Collectors.toList());
+
+        flashcardValidator.ValidateFlashcardSet(flashcards);
+
+        flashcardlist.add(flashcards);
+
+
+    }
 
 
 

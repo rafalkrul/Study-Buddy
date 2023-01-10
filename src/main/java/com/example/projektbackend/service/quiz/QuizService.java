@@ -1,8 +1,11 @@
 package com.example.projektbackend.service.quiz;
 
+import com.example.projektbackend.DTO.quiz.QuizEditDTO;
+import com.example.projektbackend.DTO.quiz.QuizFindDTO;
+import com.example.projektbackend.DTO.quiz.QuizGetDTO;
 import com.example.projektbackend.DTO.quiz.QuizPostDTO;
-import com.example.projektbackend.model.Question;
-import com.example.projektbackend.model.Quiz;
+import com.example.projektbackend.model.*;
+import com.example.projektbackend.repository.LevelRepository;
 import com.example.projektbackend.repository.QuestionRepository;
 import com.example.projektbackend.repository.QuizRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +24,11 @@ public class QuizService {
 
     private final QuestionRepository questionRepository;
 
+    private final QuizEditor quizEditor;
+
 
     private final ModelMapper mapper;
+    private final LevelRepository levelRepository;
 
     public UUID CreateQuiz(QuizPostDTO quizPostDTO) {
         UUID id = UUID.randomUUID();
@@ -35,66 +41,57 @@ public class QuizService {
                         .collect(Collectors.toList());
 
         quiz.setQuestions(questionsAdd);
-//        questionRepository.saveAll(questionsAdd);
+      //  questionRepository.saveAll(questionsAdd);
 
         quizRepository.save(quiz);
         return id;
     }
 
-//    public UUID CreateQuiz(QuizDTO quizDTO, List<QuestionDTO> questionDTOList) {
-//        UUID id = UUID.randomUUID();
+    public void EditQuizData (QuizEditDTO quizEditDTO){
+        quizEditor.editQuizData(quizEditDTO);
+    }
+
+    public void AddQuestionToQuiz(QuizEditDTO quizEditDTO){
+
+        var quiz = QuizMapper(quizEditDTO);
+
+        var questions = quizEditDTO.getQuestionsDTO().
+                stream()
+                .map(questionDTO -> mapper.map(questionDTO,Question.class))
+                .collect(Collectors.toList());
+
+        quiz.getQuestions().addAll(questions);
+
+        quizRepository.save(quiz);
+    }
+
+    public Quiz QuizMapper(QuizEditDTO quizEditDTO){
+
+        var quiz = quizRepository.findById(quizEditDTO.getQuiz_id());
+
+        return mapper.map(quiz, Quiz.class);
+    }
+
+//    public QuizGetDTO GetQuizById(UUID quiz_id){
 //
-//        var quizAdd = mapper.map(quizDTO, Quiz.class);
-//        var questionAdd = mapper.map(questionDTOList, Question.class);
+//        var quiz = quizRepository.findById(quiz_id);
 //
-//        quizAdd.setQuiz_id(id);
-//
-//        quizAdd.setQuestions(questionDTOList.stream().map(question -> mapper.map(question, Question.class))
-//                .collect(Collectors.toList()));
-//
-////        questionAdd.set(questionDTOList.stream().map(
-////                questionDTO -> mapper.map(questionDTO, QuestionDTO.class))
-////                .collect(Collectors.toList());
-////        ));
-//
-//        return id;
-//    }
-//    public UUID CreateQuiz(QuizDTO quizDTO, List<QuestionDTO> questionDTOList) {
-//        UUID id = UUID.randomUUID();
-//
-//        Quiz quiz = mapper.map(quizDTO, Quiz.class);
-//        quiz.setQuiz_id(id);
-//        quiz.setQuestions(questionDTOList.stream().map(questionDTO -> {
-//            Question question = new Question();
-//            question.setQuestion(questionDTO.getQuestion());
-//            question.setAnswer1(questionDTO.getAnswer1());
-//            question.setAnswer2(questionDTO.getAnswer2());
-//            question.setAnswer3(questionDTO.getAnswer3());
-//            question.setAnswer4(questionDTO.getAnswer4());
-//            question.setCorrectAnswer(questionDTO.getCorrectAnswer());
-//            questionRepository.save(question);
-//            return question;
-//        }).collect(Collectors.toList()));
-//
-//        quizRepository.save(quiz);
-//        return id;
+//        return mapper.map(quiz, QuizGetDTO.class);
 //    }
 
-//    public Quiz createQuiz(String name, List<String> questionTexts) {
-//        Quiz quiz = new Quiz();
-//        quiz.setId(UUID.randomUUID().toString());
-//        quiz.setName(name);
-//        quiz.setQuestions(questionTexts.stream()
-//                .map(text -> {
-//                    Question question = new Question();
-//                    question.setId(UUID.randomUUID().toString());
-//                    question.setText(text);
-//                    question.setQuiz(quiz);
-//                    return question;
-//                })
-//                .collect(Collectors.toList()));
-//        return quizRepository.save(quiz);
-//    }
+    public QuizGetDTO GetQuizById(UUID quiz_id){
+        var quiz = quizRepository.findById(quiz_id).orElseThrow(() -> new RuntimeException("dfsdfsdfs"));
+        QuizGetDTO quizGetDTO = mapper.map(quiz, QuizGetDTO.class);
+        quizGetDTO.setQuestions(quiz.getQuestions());
+        return quizGetDTO;
+    }
+
+
+    public Quiz findByCategoryIdAndLevelIdAndUnitId(UUID category_id, UUID level_id, UUID unit_id) {
+
+        return quizRepository.findByCategoryIdAndLevelIdAndUnitId(category_id,level_id,unit_id);
+    }
+
 
 
 }
