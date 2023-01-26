@@ -25,6 +25,16 @@ public class UnitService {
 
 
 
+    public UUID createUnit(UnitDTO unitDTO){
+        var id = UUID.randomUUID();
+        var unitAdd = mapper.map(unitDTO, Unit.class);
+
+        unitAdd.setId(id);
+        unitRepository.save(unitAdd);
+
+        return id;
+    }
+
     public List<Unit> findUnitByCategoryAndLevel(UUID category_id, UUID level_id){
 
 

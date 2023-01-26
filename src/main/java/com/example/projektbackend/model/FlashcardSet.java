@@ -1,6 +1,6 @@
 package com.example.projektbackend.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 import java.util.*;
@@ -16,7 +16,7 @@ public class FlashcardSet {
 
     @Id
     @GeneratedValue
-    private UUID flashcardset_id;
+    private UUID id;
 
     @ManyToOne
     private Level level;

@@ -18,5 +18,4 @@ public class FlashcardSetDTO {
 
     private String description;
 
-    private List<Flashcard> flashcards;
 }

@@ -1,9 +1,10 @@
 package com.example.projektbackend.service.quiz;
 
+import com.example.projektbackend.DTO.question.QuestionDTO;
 import com.example.projektbackend.DTO.quiz.QuizEditDTO;
-import com.example.projektbackend.DTO.quiz.QuizFindDTO;
 import com.example.projektbackend.DTO.quiz.QuizGetDTO;
 import com.example.projektbackend.DTO.quiz.QuizPostDTO;
+import com.example.projektbackend.DTO.singleanswer.SingleAnswerDTO;
 import com.example.projektbackend.model.*;
 import com.example.projektbackend.repository.LevelRepository;
 import com.example.projektbackend.repository.QuestionRepository;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,25 +24,38 @@ public class QuizService {
 
     private final QuizRepository quizRepository;
 
-    private final QuestionRepository questionRepository;
 
     private final QuizEditor quizEditor;
 
 
     private final ModelMapper mapper;
-    private final LevelRepository levelRepository;
+
 
     public UUID CreateQuiz(QuizPostDTO quizPostDTO) {
         UUID id = UUID.randomUUID();
 
         Quiz quiz = mapper.map(quizPostDTO.getQuizDTO(), Quiz.class);
 
+//        var questionsAdd = quizPostDTO.getQuestionsDTO()
+//                        .stream()
+//                .map(questionDTO -> mapper.map(questionDTO, Question.class))
+//                .collect(Collectors.toList());
+
+
         var questionsAdd = quizPostDTO.getQuestionsDTO()
-                        .stream()
-                .map(questionDTO -> mapper.map(questionDTO, Question.class))
-                        .collect(Collectors.toList());
+                .stream()
+                .map(questionDTO -> {
+                    Question question = mapper.map(questionDTO, Question.class);
+                    List<SingleAnswer> answers = questionDTO.getAnswerListDTO().stream()
+                            .map(answerDTO -> mapper.map(answerDTO, SingleAnswer.class))
+                            .collect(Collectors.toList());
+                    question.setAnswers(answers);
+                    return question;
+                })
+                .collect(Collectors.toList());
 
         quiz.setQuestions(questionsAdd);
+
       //  questionRepository.saveAll(questionsAdd);
 
         quizRepository.save(quiz);
@@ -57,7 +72,7 @@ public class QuizService {
 
         var questions = quizEditDTO.getQuestionsDTO().
                 stream()
-                .map(questionDTO -> mapper.map(questionDTO,Question.class))
+                .map(questionDTO -> mapper.map(questionDTO, Question.class))
                 .collect(Collectors.toList());
 
         quiz.getQuestions().addAll(questions);

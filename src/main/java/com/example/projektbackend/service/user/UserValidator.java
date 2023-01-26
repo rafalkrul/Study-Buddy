@@ -21,11 +21,11 @@ public class UserValidator {
     public void ValidateUser(UserDTO userDTO){
 
 
-        if(userDTO.getPassword().length() < 8)
+        if(userDTO.getPassword().length() < 3)
             throw new InvalidRegisterData("Minimalna dłguość hasła to 8 znaków");
 
-        if(userDTO.getUsername().length() < 5)
-            throw new InvalidRegisterData("Minimalna długość loginu to 5 znaków");
+        if(userDTO.getUsername().length() < 3)
+            throw new InvalidRegisterData("Minimalna długość loginu to 3 znaków");
 
         if(userRepository.existsByUsername(userDTO.getUsername()))
             throw new InvalidRegisterData("Użytkownik o podanej nazwie już istnieje");

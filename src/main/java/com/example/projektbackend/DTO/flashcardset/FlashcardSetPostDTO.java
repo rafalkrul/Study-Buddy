@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 public class FlashcardSetPostDTO {
 
-    private FlashcardSetDTO FlashcardSetDTO;
+    private FlashcardSetDTO flashcardSetDTO;
 
     private List<FlashcardDTO> flashcardsDTO;
 }

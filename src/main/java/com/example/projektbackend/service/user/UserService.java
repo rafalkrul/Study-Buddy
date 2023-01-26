@@ -2,14 +2,13 @@ package com.example.projektbackend.service.user;
 
 import com.example.projektbackend.DTO.user.UserDTO;
 import com.example.projektbackend.DTO.user.UserEditDTO;
-import com.example.projektbackend.execptions.InvalidRegisterData;
+import com.example.projektbackend.constants.Role;
 import com.example.projektbackend.model.User;
 import com.example.projektbackend.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.security.crypto.bcrypt.BCrypt;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,6 +24,7 @@ public class UserService {
     private final UserRepository userRepository;
 
     private final UserValidator userValidator;
+
     private final ModelMapper mapper;
 
     public UUID CreateUser(UserDTO userDTO) {
@@ -33,7 +33,7 @@ public class UserService {
 
         userValidator.ValidateUser(userDTO);
         if(!userValidator.ValidateEmail(userDTO.getEmail())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zły pattern kolego");
-        userAdd.setUser_id(id);
+        userAdd.setId(id);
         userAdd.setPassword(new BCryptPasswordEncoder().encode(userAdd.getPassword()));
         userRepository.save(userAdd);
 
@@ -90,4 +90,7 @@ public class UserService {
         return mapper.map(user, User.class);
 
     }
+
+
+
 }

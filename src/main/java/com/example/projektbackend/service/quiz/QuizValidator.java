@@ -33,8 +33,6 @@ public class QuizValidator {
         if(quizPostDTO.getQuizDTO().getUnit().getId().equals(0))
             throw new InvalidRegisterData("Quiz powinien zawierać Unit");
 
-        if(!quizPostDTO.getQuizDTO().getUser().getIsAdmin().booleanValue())
-            throw new InvalidRegisterData("Użytkownik musi być adminem żeby dodawać quiz");
     }
 
     public void ValidateEditQuiz(QuizEditDTO quizEditDTO){

@@ -1,13 +1,13 @@
 package com.example.projektbackend.model;
 
 
-import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.*;
 import java.util.Date;
-import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -16,12 +16,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity(name = "users")
-
 public class User {
 
     @Id
     @GeneratedValue
-    private UUID user_id;
+    private UUID id;
 
     @CreationTimestamp
     @Column(nullable = false)
@@ -37,15 +36,10 @@ public class User {
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Builder.Default
-    @Column(nullable = false, columnDefinition = "boolean default false")
-    private Boolean isAdmin = false;
+    @Column(nullable = false)
+    private String role = "USER";
 
     @OneToMany(mappedBy = "user")
     private List<FlashcardSet> flashcardSets;
-
-    @OneToMany(mappedBy = "user")
-    private List<Quiz> quizzes;
-
 
 }

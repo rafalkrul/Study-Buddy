@@ -24,18 +24,18 @@ public class FlashcardSetEditor {
     private final FlashcardValidator flashcardValidator;
 
 
-    public void EditFlashcardSetData(FlashcardSetEditDTO flashcardSetEditDTO){
-
-        var flashes = flashcardSetRepository.findById(flashcardSetEditDTO.getFlashcardset_id());
-
-//        if(!flashcardSetEditDTO.getName().isBlank())
-//            flashes.setName(flashcardSetEditDTO.getName());
+//    public void EditFlashcardSetData(FlashcardSetEditDTO flashcardSetEditDTO){
 //
-//        if(!flashcardSetEditDTO.getDescription().isBlank())
-//            flashes.setDescription(flashcardSetEditDTO.getDescription());
-
-//        flashcardSetRepository.save(flashes);
-    }
+//        var flashes = flashcardSetRepository.findById(flashcardSetEditDTO.getFlashcardset_id());
+//
+////        if(!flashcardSetEditDTO.getName().isBlank())
+////            flashes.setName(flashcardSetEditDTO.getName());
+////
+////        if(!flashcardSetEditDTO.getDescription().isBlank())
+////            flashes.setDescription(flashcardSetEditDTO.getDescription());
+//
+////        flashcardSetRepository.save(flashes);
+//    }
 
 //    public void AddFlashcardsInFlashcardSet(UUID uuid, List<Flashcard> flashcards){
 //
@@ -51,23 +51,23 @@ public class FlashcardSetEditor {
 //    }
 
 
-    public void AddFlashcardsInFlashcardSet(FlashcardSetEditDTO flashcardSetEditDTO){
-
-        var flashcardSet = flashcardSetRepository.findById(flashcardSetEditDTO.getFlashcardset_id());
-
-        var flashcardlist = flashcardSet.stream().map(FlashcardSet::getFlashcards).collect(Collectors.toList());
-
-        flashcardValidator.ValidateFlashcardSet(flashcardSetEditDTO.getFlashcards());
-
-        flashcardlist.add(flashcardSetEditDTO.getFlashcards());
-
-//        flashcardSetRepository.save(flashcardSet);
-    }
-
-    //        flashcardSet.setName(name);
-//        flashcardSet.setDescription(description);
-
-//        flashcardSetRepository.save(flashcardSet);
-
-
+//    public void AddFlashcardsInFlashcardSet(FlashcardSetEditDTO flashcardSetEditDTO){
+//
+//        var flashcardSet = flashcardSetRepository.findById(flashcardSetEditDTO.getFlashcardset_id());
+//
+//        var flashcardlist = flashcardSet.stream().map(FlashcardSet::getFlashcards).collect(Collectors.toList());
+//
+//        flashcardValidator.ValidateFlashcardSet(flashcardSetEditDTO.getFlashcards());
+//
+//        flashcardlist.add(flashcardSetEditDTO.getFlashcards());
+//
+////        flashcardSetRepository.save(flashcardSet);
+//    }
+//
+//    //        flashcardSet.setName(name);
+////        flashcardSet.setDescription(description);
+//
+////        flashcardSetRepository.save(flashcardSet);
+//
+//
 }

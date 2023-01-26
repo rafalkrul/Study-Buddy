@@ -1,17 +1,13 @@
 package com.example.projektbackend.DTO.question;
 
+import com.example.projektbackend.DTO.singleanswer.SingleAnswerDTO;
 import lombok.Data;
+
+import java.util.List;
+
 @Data
 public class QuestionDTO {
     private String question;
 
-    private String answer1;
-
-    private String answer2;
-
-    private String answer3;
-
-    private String answer4;
-
-    private String correctAnswer;
+    private List<SingleAnswerDTO> answerListDTO;
 }

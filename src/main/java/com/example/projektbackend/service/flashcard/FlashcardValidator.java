@@ -28,6 +28,18 @@ public class FlashcardValidator {
             throw new InvalidFlashcardData("Podane słowo zawiera znaki inne niż litery");
         
     }
+
+    public void validateWord(String word){
+        if(!word.matches(regex))
+            throw new InvalidFlashcardData("Podane słowo zawiera znaki inne niż litery");
+
+    }
+
+    public void validateTranslation(String translation){
+        if(!translation.matches(regex))
+            throw new InvalidFlashcardData("Podane słowo zawiera znaki inne niż litery");
+
+    }
     
     public void ValidateFlashcardSet(List<Flashcard> flashcardList){
 

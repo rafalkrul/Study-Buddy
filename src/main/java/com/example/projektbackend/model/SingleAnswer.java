@@ -10,17 +10,19 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "flashcard")
-public class Flashcard {
+@Entity(name = "singleAnswer")
+public class SingleAnswer {
+
 
     @Id
     @GeneratedValue
     private UUID id;
 
+    @Column(nullable = false)
+    private String answer;
 
     @Column(nullable = false)
-    private String word;
+    private boolean isRight;
 
-    @Column(nullable = false)
-    private String translation;
+
 }

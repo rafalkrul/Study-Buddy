@@ -4,7 +4,6 @@ import com.example.projektbackend.DTO.quiz.*;
 import com.example.projektbackend.model.*;
 import com.example.projektbackend.repository.QuizRepository;
 import com.example.projektbackend.service.quiz.QuizService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,7 @@ public class QuizController {
     private final ModelMapper mapper;
 
     @PostMapping("/add_quiz")
-    public ResponseEntity<UUID> CreateQuiz(@Valid @RequestBody QuizPostDTO quizPostDTO) {
+    public ResponseEntity<UUID> CreateQuiz(@RequestBody QuizPostDTO quizPostDTO) {
         var quiz_id = quizService.CreateQuiz(quizPostDTO);
         return new ResponseEntity<>(quiz_id, HttpStatus.CREATED);
     }

@@ -1,9 +1,8 @@
 package com.example.projektbackend.model;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -17,7 +16,7 @@ public class Quiz {
 
     @Id
     @GeneratedValue
-    private UUID quiz_id;
+    private UUID id;
 
     @ManyToOne
     private Category category;

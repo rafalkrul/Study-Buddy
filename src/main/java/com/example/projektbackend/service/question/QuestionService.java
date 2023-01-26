@@ -22,7 +22,7 @@ public class QuestionService {
         var id = UUID.randomUUID();
         var questionAdd = mapper.map(questionDTO, Question.class);
 
-        questionAdd.setQuestion_id(id);
+        questionAdd.setId(id);
         questionRepository.save(questionAdd);
 
         return id;

@@ -1,12 +1,10 @@
 package com.example.projektbackend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import javax.persistence.*;
 import lombok.*;
 
 
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -14,24 +12,17 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "Question")
+@Entity(name = "question")
 public class Question {
 
     @Id
     @GeneratedValue
-    private UUID question_id;
+    private UUID id;
 
     @Column(nullable = false)
     private String question;
-    @Column(nullable = false)
-    private String answer1;
-    @Column(nullable = false)
-    private String answer2;
-    @Column(nullable = false)
-    private String answer3;
-    @Column(nullable = false)
-    private String answer4;
-    @Column(nullable = false)
-    private String correctAnswer;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SingleAnswer> answers;
 
 }
