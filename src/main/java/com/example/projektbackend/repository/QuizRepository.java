@@ -27,4 +27,7 @@ public interface QuizRepository extends JpaRepository<Quiz, UUID> {
 //    Quiz findByCategoryAndLevelAndUnit(@Param("category") Category category, @Param("level") Level level, @Param("unit") Unit unit);
 
 
+    Quiz findAllByCategoryId(UUID category_id);
+
+
 }

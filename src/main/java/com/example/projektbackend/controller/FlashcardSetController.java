@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -32,7 +33,13 @@ public class FlashcardSetController {
         return new ResponseEntity<>(flashcardSet, HttpStatus.OK);
     }
 
-    @PostMapping("/flashcardset/add_flashcards")
+    @GetMapping("/flashcardsets/{user_id}")
+    public List<FlashcardSetGetDTO> getflashcardsByUserId(@PathVariable UUID user_id) {
+        var flashcardSet = flashCardSetService.getAllFlashcardSetsByUserId(user_id);
+        return flashcardSet;
+    }
+
+        @PostMapping("/flashcardset/add_flashcards")
     public ResponseEntity<Void> addFlashcardsInFlashcardSet(@RequestBody FlashcardSetEditDTO flashcardSetEditDTO){
         flashCardSetService.AddFlashcardsInFlashcardSet(flashcardSetEditDTO);
         return ResponseEntity.ok().build();

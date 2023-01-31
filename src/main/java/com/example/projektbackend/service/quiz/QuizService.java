@@ -107,6 +107,13 @@ public class QuizService {
         return quizRepository.findByCategoryIdAndLevelIdAndUnitId(category_id,level_id,unit_id);
     }
 
+    public QuizGetDTO findAllByCategoryId(UUID category_id){
+        var quiz =  quizRepository.findAllByCategoryId(category_id);
+        QuizGetDTO quizGetDTO = mapper.map(quiz, QuizGetDTO.class);
+        quizGetDTO.setQuestions(quiz.getQuestions());
+        return quizGetDTO;
+    }
+
 
 
 }

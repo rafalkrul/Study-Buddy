@@ -27,7 +27,7 @@ public class FlashcardService {
 
         var flashcardAdd = mapper.map(flashcardDTO, Flashcard.class);
 
-        flashcardValidator.ValidateFlashcard(flashcardDTO);
+//        flashcardValidator.ValidateFlashcard(flashcardDTO);
 
         flashcardRepository.save(flashcardAdd);
 
@@ -55,6 +55,7 @@ public class FlashcardService {
         var flashcard = flashcardRepository.findById(flashcardGetDTO.getId());
         return mapper.map(flashcard,FlashcardGetDTO.class);
     }
+
 
 
 

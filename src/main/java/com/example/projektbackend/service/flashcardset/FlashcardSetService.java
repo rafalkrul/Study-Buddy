@@ -48,7 +48,7 @@ public class FlashcardSetService {
 
 
 
-        flashcardValidator.ValidateFlashcardSet(flashcardsAdd);
+//        flashcardValidator.ValidateFlashcardSet(flashcardsAdd);
 
        flashcardSet.setFlashcards(flashcardsAdd);
 
@@ -61,20 +61,13 @@ public class FlashcardSetService {
 
 
 
-
-
-//    public void AddFlashcardsInFlashcardSet(UUID uuid, List<Flashcard> flashcards){
-//
-//        var flashcardSet = flashcardSetRepository.findById(uuid);
-//
-//        var flashcardlist = flashcardSet.stream().map(FlashcardSet::getFlashcards).collect(Collectors.toList());
-//
-//        flashcardValidator.ValidateFlashcardSet(flashcards);
-//
-//        flashcardlist.add(flashcards);
-//
-//
-//    }
+    public List<FlashcardSetGetDTO> getAllFlashcardSetsByUserId(UUID user_id){
+        List<FlashcardSet> flashcardSet = flashcardSetRepository.findAllByUserId(user_id);
+        List<FlashcardSetGetDTO> flashcardSetList = flashcardSet.stream()
+                .map(flashcardSet1 -> mapper.map(flashcardSet1, FlashcardSetGetDTO.class))
+                .collect(Collectors.toList());
+        return flashcardSetList;
+    }
 
 
     public void AddFlashcardsInFlashcardSet(FlashcardSetEditDTO flashcardSetEditDTO){
@@ -86,7 +79,7 @@ public class FlashcardSetService {
                 .map(flashcardDTO -> mapper.map(flashcardDTO, Flashcard.class))
                 .collect(Collectors.toList());
 
-        flashcardValidator.ValidateFlashcardSet(flashcards);
+//        flashcardValidator.ValidateFlashcardSet(flashcards);
 
         flashcardSet.getFlashcards().addAll(flashcards);
 
@@ -96,7 +89,9 @@ public class FlashcardSetService {
 
     public FlashcardSetGetDTO getFlashcardSetById(UUID flashcardset_id){
         var flashcardSet = flashcardSetRepository.findById(flashcardset_id).orElseThrow(() -> new RuntimeException("dfsdfsdfs"));
-        return mapper.map(flashcardSet, FlashcardSetGetDTO.class);
+        FlashcardSetGetDTO flashcardSetGetDTO = mapper.map(flashcardSet,FlashcardSetGetDTO.class);
+        flashcardSetGetDTO.setFlashcardsDTO(flashcardSet.getFlashcards());
+        return flashcardSetGetDTO;
     }
 
 

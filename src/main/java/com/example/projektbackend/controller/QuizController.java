@@ -48,6 +48,13 @@ public class QuizController {
         return new ResponseEntity<>(quiz,HttpStatus.OK);
     }
 
+
+    @GetMapping("/quiz/getQuizesByCategory")
+    public ResponseEntity<QuizGetDTO> getAllQuizesByCategoryId(@PathVariable UUID category_id){
+        var quiz = quizService.findAllByCategoryId(category_id);
+        return new ResponseEntity<>(quiz,HttpStatus.OK);
+    }
+
     @GetMapping("/quiz")
     public ResponseEntity<Quiz> getQuiz (@RequestBody QuizFindDTO quizFindDTO){
         var quiz = quizService.findByCategoryIdAndLevelIdAndUnitId(quizFindDTO.getCategory_id(),quizFindDTO.getLevel_id(),quizFindDTO.getUnit_id());

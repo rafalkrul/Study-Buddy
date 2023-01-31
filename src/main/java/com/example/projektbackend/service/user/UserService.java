@@ -44,13 +44,13 @@ public class UserService {
 
         var user = AuthenticatedUser(userEditDTO);
 
-        if(!userEditDTO.getEmail().isBlank()){
+        if(!userEditDTO.getEmail().isEmpty()){
             userValidator.ValidateEditUserEmail(userEditDTO);
             userValidator.ValidateEmail(userEditDTO.getEmail());
            user.setEmail(userEditDTO.getEmail());
        }
 
-        if(!userEditDTO.getPassword().isBlank()){
+        if(!userEditDTO.getPassword().isEmpty()){
             userValidator.ValidateEditUserPassword(userEditDTO);
             user.setPassword(userEditDTO.getPassword());
         }
