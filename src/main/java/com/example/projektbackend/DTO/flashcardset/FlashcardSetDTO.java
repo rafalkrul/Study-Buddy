@@ -10,8 +10,6 @@ import java.util.List;
 @Data
 public class FlashcardSetDTO {
 
-    private Level level;
-
     private User user;
 
     private String name;

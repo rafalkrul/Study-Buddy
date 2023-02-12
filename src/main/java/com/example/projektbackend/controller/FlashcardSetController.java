@@ -27,9 +27,9 @@ public class FlashcardSetController {
         return new ResponseEntity<>(flashcardset_id, HttpStatus.CREATED);
     }
 
-    @GetMapping("/flashcardset/{flashcardset_id}")
-    public ResponseEntity<FlashcardSetGetDTO> getFlashcardSetById(@PathVariable UUID flashcardset_id) {
-        var flashcardSet = flashCardSetService.getFlashcardSetById(flashcardset_id);
+    @GetMapping("/flashcardset/{flashcardsetId}")
+    public ResponseEntity<FlashcardSetGetDTO> getFlashcardSetById(@PathVariable UUID flashcardsetId) {
+        var flashcardSet = flashCardSetService.getFlashcardSetById(flashcardsetId);
         return new ResponseEntity<>(flashcardSet, HttpStatus.OK);
     }
 
@@ -45,9 +45,9 @@ public class FlashcardSetController {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/flashcardset/{flashcard_id}")
-    public ResponseEntity<Void> deleteFlashcardsetbyId(@PathVariable UUID flashcard_id){
-        flashCardSetService.deleteFlashcardSetById(flashcard_id);
+    @DeleteMapping("/flashcardsetDelete/{flashcardId}")
+    public ResponseEntity<Void> deleteFlashcardsetbyId(@PathVariable UUID flashcardId){
+        flashCardSetService.deleteFlashcardSetById(flashcardId);
         return ResponseEntity.ok().build();
     }
 

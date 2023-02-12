@@ -49,7 +49,7 @@ public class QuizController {
     }
 
 
-    @GetMapping("/quiz/getQuizesByCategory")
+    @GetMapping("/quiz/getQuizesByCategory/{category_id}")
     public ResponseEntity<QuizGetDTO> getAllQuizesByCategoryId(@PathVariable UUID category_id){
         var quiz = quizService.findAllByCategoryId(category_id);
         return new ResponseEntity<>(quiz,HttpStatus.OK);

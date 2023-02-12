@@ -35,8 +35,10 @@ public class FlashcardService {
 
     }
 
-    public void deleteFlashcardById(FlashcardGetDTO flashcardGetDTO){
-        flashcardRepository.deleteById(flashcardGetDTO.getId());
+    public void deleteFlashcardById(UUID flashcardId){
+        flashcardRepository.deleteFlashcardSetFlashcardsByFlashcardId(flashcardId);
+        flashcardRepository.deleteFlashcardAndFlashcardSetFlashcardsByFlashcardId(flashcardId);
+//        flashcardRepository.deleteById(flashcardId);
     }
 
     public void editFlashcard(FlashcardGetDTO flashcardGetDTO){

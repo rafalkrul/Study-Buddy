@@ -19,9 +19,6 @@ public class FlashcardSet {
     private UUID id;
 
     @ManyToOne
-    private Level level;
-
-    @ManyToOne
     private User user;
 
     @Column(nullable = false)

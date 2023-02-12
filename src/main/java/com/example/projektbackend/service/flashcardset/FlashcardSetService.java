@@ -17,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -66,8 +67,13 @@ public class FlashcardSetService {
         List<FlashcardSetGetDTO> flashcardSetList = flashcardSet.stream()
                 .map(flashcardSet1 -> mapper.map(flashcardSet1, FlashcardSetGetDTO.class))
                 .collect(Collectors.toList());
+
+
+
         return flashcardSetList;
     }
+
+
 
 
     public void AddFlashcardsInFlashcardSet(FlashcardSetEditDTO flashcardSetEditDTO){
@@ -87,8 +93,8 @@ public class FlashcardSetService {
     }
 
 
-    public FlashcardSetGetDTO getFlashcardSetById(UUID flashcardset_id){
-        var flashcardSet = flashcardSetRepository.findById(flashcardset_id).orElseThrow(() -> new RuntimeException("dfsdfsdfs"));
+    public FlashcardSetGetDTO getFlashcardSetById(UUID flashcardsetId){
+        var flashcardSet = flashcardSetRepository.findById(flashcardsetId).orElseThrow(() -> new RuntimeException("dfsdfsdfs"));
         FlashcardSetGetDTO flashcardSetGetDTO = mapper.map(flashcardSet,FlashcardSetGetDTO.class);
         flashcardSetGetDTO.setFlashcardsDTO(flashcardSet.getFlashcards());
         return flashcardSetGetDTO;
@@ -102,8 +108,8 @@ public class FlashcardSetService {
         return mapper.map(flashcardSet, FlashcardSet.class);
     }
 
-    public void deleteFlashcardSetById(UUID flashcardset_id){
-         flashcardSetRepository.deleteById(flashcardset_id);
+    public void deleteFlashcardSetById(UUID flashcardsetId){
+         flashcardSetRepository.deleteById(flashcardsetId);
     }
 
     public void editFlashcardSet(FlashcardSetEditDTO flashcardSetEditDTO){

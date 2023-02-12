@@ -24,5 +24,7 @@ public class SingleAnswer {
     @Column(nullable = false)
     private boolean isRight;
 
+    //zobaczyć czy boolean z małej czy dużej, jeżeli nie działa na małej to ustawić na dużą B
+
 
 }
