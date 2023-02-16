@@ -37,7 +37,7 @@ public class User {
     private String email;
 
     @Column(nullable = false)
-    private String role = "USER";
+    private String role;
 
     @OneToMany(mappedBy = "user")
     private List<FlashcardSet> flashcardSets;

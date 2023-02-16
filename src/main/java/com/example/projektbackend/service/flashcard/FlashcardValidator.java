@@ -23,10 +23,11 @@ public class FlashcardValidator {
 
 
     public void ValidateFlashcard(FlashcardDTO flashcardDTO){
-        
-        if(!flashcardDTO.getWord().matches(regex) || !flashcardDTO.getTranslation().matches(regex))
-            throw new InvalidFlashcardData("Podane słowo zawiera znaki inne niż litery");
-        
+
+        validateWord(flashcardDTO.getWord());
+
+        validateTranslation(flashcardDTO.getTranslation());
+
     }
 
     public void validateWord(String word){
@@ -45,9 +46,12 @@ public class FlashcardValidator {
 
         if(!flashcardList.isEmpty()){
 
-            if(flashcardList.stream().map(Flashcard::getTranslation).allMatch(n -> n.matches(regex)) || flashcardList.stream().map(Flashcard::getWord).allMatch(n -> n.matches(regex)))
+            if (flashcardList.stream().anyMatch(flashcard -> !flashcard.getTranslation().matches(regex) || !flashcard.getWord().matches(regex))) {
                 throw new InvalidFlashcardData("W zestawie fiszek znajdują się znaki nie będące literami");
+            }
 
+        }else {
+            throw new InvalidFlashcardData("W zestawie nie ma fiszek");
         }
 
     }

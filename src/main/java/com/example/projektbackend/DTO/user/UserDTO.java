@@ -10,6 +10,6 @@ public class UserDTO {
 
     private String email;
 
-    private boolean isAdmin;
+   private String role;
 
 }

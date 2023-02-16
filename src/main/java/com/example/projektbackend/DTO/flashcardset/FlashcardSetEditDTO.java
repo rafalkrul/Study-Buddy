@@ -11,7 +11,7 @@ import java.util.UUID;
 @Data
 public class FlashcardSetEditDTO {
 
-    private UUID flashcardset_id;
+    private UUID id;
     private String name;
     private String description;
     private List<FlashcardDTO> flashcardsDTO;

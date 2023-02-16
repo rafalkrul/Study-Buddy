@@ -27,7 +27,7 @@ public class FlashcardService {
 
         var flashcardAdd = mapper.map(flashcardDTO, Flashcard.class);
 
-//        flashcardValidator.ValidateFlashcard(flashcardDTO);
+        flashcardValidator.ValidateFlashcard(flashcardDTO);
 
         flashcardRepository.save(flashcardAdd);
 

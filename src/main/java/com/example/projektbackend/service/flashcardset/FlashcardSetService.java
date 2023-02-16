@@ -49,7 +49,7 @@ public class FlashcardSetService {
 
 
 
-//        flashcardValidator.ValidateFlashcardSet(flashcardsAdd);
+        flashcardValidator.ValidateFlashcardSet(flashcardsAdd);
 
        flashcardSet.setFlashcards(flashcardsAdd);
 
@@ -85,7 +85,7 @@ public class FlashcardSetService {
                 .map(flashcardDTO -> mapper.map(flashcardDTO, Flashcard.class))
                 .collect(Collectors.toList());
 
-//        flashcardValidator.ValidateFlashcardSet(flashcards);
+        flashcardValidator.ValidateFlashcardSet(flashcards);
 
         flashcardSet.getFlashcards().addAll(flashcards);
 
@@ -103,7 +103,7 @@ public class FlashcardSetService {
 
     public FlashcardSet flashcardSetMapper(FlashcardSetEditDTO flashcardSetEditDTO){
 
-        var flashcardSet = flashcardSetRepository.findById(flashcardSetEditDTO.getFlashcardset_id());
+        var flashcardSet = flashcardSetRepository.findById(flashcardSetEditDTO.getId());
 
         return mapper.map(flashcardSet, FlashcardSet.class);
     }
