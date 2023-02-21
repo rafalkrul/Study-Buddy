@@ -1,9 +1,9 @@
 package com.example.projektbackend.DTO.quiz;
 
-import com.example.projektbackend.model.*;
+
 import lombok.Data;
 
-import java.util.List;
+
 import java.util.UUID;
 
 @Data

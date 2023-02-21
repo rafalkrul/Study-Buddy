@@ -35,6 +35,7 @@ public class UserService {
         if(!userValidator.ValidateEmail(userDTO.getEmail())) throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zły pattern kolego");
         userAdd.setId(id);
         userAdd.setPassword(new BCryptPasswordEncoder().encode(userAdd.getPassword()));
+        userAdd.setRole(String.valueOf(Role.USER));
         userRepository.save(userAdd);
 
         return id;

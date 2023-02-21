@@ -8,13 +8,6 @@ import java.util.List;
 @Data
 public class QuizDTO {
 
-
-    private Category category;
-
-    private Level level;
-
-    private User user;
-
     private Unit unit;
     private String title;
 

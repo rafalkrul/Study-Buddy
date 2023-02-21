@@ -1,9 +1,6 @@
 package com.example.projektbackend.service.unit;
 
 import com.example.projektbackend.DTO.unit.UnitDTO;
-import com.example.projektbackend.DTO.unit.UnitFindDTO;
-import com.example.projektbackend.model.Category;
-import com.example.projektbackend.model.Level;
 import com.example.projektbackend.model.Unit;
 import com.example.projektbackend.repository.UnitRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,10 +32,10 @@ public class UnitService {
         return id;
     }
 
-    public List<Unit> findUnitByCategoryAndLevel(UUID category_id, UUID level_id){
+    public List<Unit> findByCategoryAndLevel(String category, String level){
 
 
-        var unit = unitRepository.findByCategoryIdAndLevelId(category_id, level_id).stream()
+        var unit = unitRepository.findByCategoryAndLevel(category,level).stream()
                 .map(unit1 -> mapper.map(unit1,Unit.class))
                 .collect(Collectors.toList());
 

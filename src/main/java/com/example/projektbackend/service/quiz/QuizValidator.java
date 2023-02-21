@@ -24,28 +24,22 @@ public class QuizValidator {
         if(quizPostDTO.getQuizDTO().getDescription().isBlank())
             throw new InvalidRegisterData("Quiz powinien zawierać opis");
 
-        if(quizPostDTO.getQuizDTO().getCategory().getId().equals(0))
-            throw new InvalidRegisterData("Quiz powinien zawierać kategorię");
-
-        if(quizPostDTO.getQuizDTO().getLevel().getId().equals(0))
-            throw new InvalidRegisterData("Quiz powinien zawierać poziom");
-
         if(quizPostDTO.getQuizDTO().getUnit().getId().equals(0))
             throw new InvalidRegisterData("Quiz powinien zawierać Unit");
 
     }
 
-    public void ValidateEditQuiz(QuizEditDTO quizEditDTO){
-
-        var quiz = quizRepository.findById(quizEditDTO.getQuiz_id());
-
-        if(quizEditDTO.getTitle().equals(quiz.get().getTitle()))
-            throw new InvalidEditData("Tytuł Quizu jest identyczny");
-
-        if(quizEditDTO.getDescription().equals(quiz.get().getDescription()))
-            throw new InvalidRegisterData("Opis quizu jest identyczny");
-
-
-    }
+//    public void ValidateEditQuiz(QuizEditDTO quizEditDTO){
+//
+//        var quiz = quizRepository.findById(quizEditDTO.getQuiz_id());
+//
+//        if(quizEditDTO.getTitle().equals(quiz.get().getTitle()))
+//            throw new InvalidEditData("Tytuł Quizu jest identyczny");
+//
+//        if(quizEditDTO.getDescription().equals(quiz.get().getDescription()))
+//            throw new InvalidRegisterData("Opis quizu jest identyczny");
+//
+//
+//    }
 
 }

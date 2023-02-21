@@ -1,7 +1,6 @@
 package com.example.projektbackend.controller;
 
 import com.example.projektbackend.DTO.quiz.*;
-import com.example.projektbackend.model.*;
 import com.example.projektbackend.repository.QuizRepository;
 import com.example.projektbackend.service.quiz.QuizService;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +19,6 @@ public class QuizController {
 
 
     private final QuizService quizService;
-    private final QuizRepository quizRepository;
-
-    private final ModelMapper mapper;
 
     @PostMapping("/add_quiz")
     public ResponseEntity<UUID> CreateQuiz(@RequestBody QuizPostDTO quizPostDTO) {
@@ -48,16 +44,11 @@ public class QuizController {
         return new ResponseEntity<>(quiz,HttpStatus.OK);
     }
 
-
-    @GetMapping("/quiz/getQuizesByCategory/{category_id}")
-    public ResponseEntity<QuizGetDTO> getAllQuizesByCategoryId(@PathVariable UUID category_id){
-        var quiz = quizService.findAllByCategoryId(category_id);
-        return new ResponseEntity<>(quiz,HttpStatus.OK);
+    @GetMapping("/quizes")
+    public List<QuizGetDTO> getListQuizes(@RequestBody UUID unit_id){
+        var quiz = quizService.findByUnitId(unit_id);
+        return quiz;
     }
 
-    @GetMapping("/quiz")
-    public ResponseEntity<Quiz> getQuiz (@RequestBody QuizFindDTO quizFindDTO){
-        var quiz = quizService.findByCategoryIdAndLevelIdAndUnitId(quizFindDTO.getCategory_id(),quizFindDTO.getLevel_id(),quizFindDTO.getUnit_id());
-        return new ResponseEntity<>(quiz, HttpStatus.OK);
-    }
+
 }

@@ -17,16 +17,6 @@ public class Quiz {
     @Id
     @GeneratedValue
     private UUID id;
-
-    @ManyToOne
-    private Category category;
-
-    @ManyToOne
-    private Level level;
-
-    @ManyToOne
-    private User user;
-
     @ManyToOne
     private Unit unit;
 

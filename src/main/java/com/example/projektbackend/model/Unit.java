@@ -24,10 +24,11 @@ public class Unit {
     @Column(nullable = false)
     private String description;
 
-    @ManyToOne
-    private Category category;
+    @Column(nullable = false)
+    private String category;
 
-    @ManyToOne
-    private Level level;
+    @Column(nullable = false)
+    private String level;
+
 
 }

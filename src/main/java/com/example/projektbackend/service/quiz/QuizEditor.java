@@ -35,7 +35,7 @@ public class QuizEditor {
 
     public Quiz QuizMapper(QuizEditDTO quizEditDTO) {
 
-        var quiz = quizRepository.findById(quizEditDTO.getQuiz_id());
+        var quiz = quizRepository.findById(quizEditDTO.getId());
 
         return mapper.map(quiz,Quiz.class);
 

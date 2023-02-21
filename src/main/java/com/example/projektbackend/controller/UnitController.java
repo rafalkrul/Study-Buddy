@@ -1,6 +1,5 @@
 package com.example.projektbackend.controller;
 
-import com.example.projektbackend.DTO.category.CategoryDTO;
 import com.example.projektbackend.DTO.unit.UnitDTO;
 import com.example.projektbackend.DTO.unit.UnitFindDTO;
 import com.example.projektbackend.model.Unit;
@@ -31,7 +30,7 @@ public class UnitController {
 
     @GetMapping("/units")
     public ResponseEntity<List<Unit>> findUnitByCategoryAndLevel(@RequestBody UnitFindDTO unitFindDTO){
-        var unit = unitService.findUnitByCategoryAndLevel(unitFindDTO.getCategory_id(),unitFindDTO.getLevel_id());
+        var unit = unitService.findByCategoryAndLevel(unitFindDTO.getCategory(),unitFindDTO.getLevel());
         return new ResponseEntity<>(unit, HttpStatus.OK);
     }
 

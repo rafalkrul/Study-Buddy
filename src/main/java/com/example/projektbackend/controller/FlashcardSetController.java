@@ -3,7 +3,6 @@ package com.example.projektbackend.controller;
 import com.example.projektbackend.DTO.flashcardset.FlashcardSetEditDTO;
 import com.example.projektbackend.DTO.flashcardset.FlashcardSetGetDTO;
 import com.example.projektbackend.DTO.flashcardset.FlashcardSetPostDTO;
-import com.example.projektbackend.DTO.quiz.QuizGetDTO;
 import com.example.projektbackend.service.flashcardset.FlashcardSetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,13 +1,9 @@
 package com.example.projektbackend.service.quiz;
 
-import com.example.projektbackend.DTO.question.QuestionDTO;
 import com.example.projektbackend.DTO.quiz.QuizEditDTO;
 import com.example.projektbackend.DTO.quiz.QuizGetDTO;
 import com.example.projektbackend.DTO.quiz.QuizPostDTO;
-import com.example.projektbackend.DTO.singleanswer.SingleAnswerDTO;
 import com.example.projektbackend.model.*;
-import com.example.projektbackend.repository.LevelRepository;
-import com.example.projektbackend.repository.QuestionRepository;
 import com.example.projektbackend.repository.QuizRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -36,10 +32,6 @@ public class QuizService {
 
         Quiz quiz = mapper.map(quizPostDTO.getQuizDTO(), Quiz.class);
 
-//        var questionsAdd = quizPostDTO.getQuestionsDTO()
-//                        .stream()
-//                .map(questionDTO -> mapper.map(questionDTO, Question.class))
-//                .collect(Collectors.toList());
 
 
         var questionsAdd = quizPostDTO.getQuestionsDTO()
@@ -56,7 +48,6 @@ public class QuizService {
 
         quiz.setQuestions(questionsAdd);
 
-      //  questionRepository.saveAll(questionsAdd);
 
         quizRepository.save(quiz);
         return id;
@@ -82,36 +73,32 @@ public class QuizService {
 
     public Quiz QuizMapper(QuizEditDTO quizEditDTO){
 
-        var quiz = quizRepository.findById(quizEditDTO.getQuiz_id());
+        var quiz = quizRepository.findById(quizEditDTO.getId());
 
         return mapper.map(quiz, Quiz.class);
     }
 
-//    public QuizGetDTO GetQuizById(UUID quiz_id){
-//
-//        var quiz = quizRepository.findById(quiz_id);
-//
-//        return mapper.map(quiz, QuizGetDTO.class);
-//    }
 
     public QuizGetDTO GetQuizById(UUID quiz_id){
-        var quiz = quizRepository.findById(quiz_id).orElseThrow(() -> new RuntimeException("dfsdfsdfs"));
+        var quiz = quizRepository.findById(quiz_id).orElseThrow(() -> new RuntimeException("No Quiz Found"));
         QuizGetDTO quizGetDTO = mapper.map(quiz, QuizGetDTO.class);
         quizGetDTO.setQuestions(quiz.getQuestions());
         return quizGetDTO;
     }
 
 
-    public Quiz findByCategoryIdAndLevelIdAndUnitId(UUID category_id, UUID level_id, UUID unit_id) {
 
-        return quizRepository.findByCategoryIdAndLevelIdAndUnitId(category_id,level_id,unit_id);
-    }
+    public List<QuizGetDTO> findByUnitId(UUID unit_id){
 
-    public QuizGetDTO findAllByCategoryId(UUID category_id){
-        var quiz =  quizRepository.findAllByCategoryId(category_id);
-        QuizGetDTO quizGetDTO = mapper.map(quiz, QuizGetDTO.class);
-        quizGetDTO.setQuestions(quiz.getQuestions());
-        return quizGetDTO;
+        List<Quiz> quizes = quizRepository.findByUnitId(unit_id);
+
+        List<QuizGetDTO> quizList = quizes.stream()
+                .map(quiz -> mapper.map(quiz,QuizGetDTO.class))
+                .collect(Collectors.toList());
+
+        return quizList;
+
+
     }
 
 

@@ -6,8 +6,9 @@ import java.util.UUID;
 @Data
 public class UnitFindDTO {
 
-    private UUID category_id;
+    private UUID id;
+    private String category;
 
-    private UUID level_id;
+    private String level;
 
 }
